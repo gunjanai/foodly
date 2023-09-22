@@ -1,10 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom"
+import "../index.css"
+import Header from "./components/Header";
+import Body from "./components/Body";
 
 const AppLayout = () => {
     return (
         <div className="appLayout">
-            Hello World!
+            <Header />
+            <Body />
         </div>
     )
 }
