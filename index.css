@@ -37,6 +37,8 @@
     
     .restaurant__image{
         width: 19vw;
+        height: 25vw;
+        object-fit: cover;
     }
     
     .credits{
@@ -80,6 +82,8 @@
 
 .restaurant__image{
     width: 100%;
+    /* height: 50vw; */
+    object-fit: cover;
 }
 
 .credits{

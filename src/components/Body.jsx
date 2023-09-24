@@ -1,21 +1,16 @@
 import RestaurantCard from "./RestaurantCard";
+import restaurantData from '../utils/restaurantData'
 
 const Body = () => {
     return (
         <div className="body">
             <div className="search">Search</div>
             <div className="restaurant__container">
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
-                <RestaurantCard />
+                {
+                    restaurantData.map(restaurant => (
+                        <RestaurantCard restaurant={restaurant} />
+                    ))
+                }
             </div>
         </div>
     )
