@@ -1,14 +1,24 @@
-import restaurant1 from "../assets/restaurant1.jpg"
+import { CLOUDINARY_IMAGE_URL } from '../utils/constants'
 
 const RestaurantCard = ({restaurant}) => {
     return (
         <div className="restaurant__card">
-            <img className="restaurant__image" src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${restaurant.info.cloudinaryImageId}`} />
+            <img className="restaurant__image" src={CLOUDINARY_IMAGE_URL + restaurant.info.cloudinaryImageId} />
             <h3>
                 {
                     restaurant.info.name
                 }
             </h3>
+            <div>
+                {
+                    restaurant.info.cuisines.join(", ")
+                }
+            </div>
+            <div>
+                {
+                    restaurant.info.avgRating
+                }
+            </div>
         </div>
     )
 }
