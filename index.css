@@ -33,11 +33,13 @@
     flex-wrap: wrap;
   }
 
-  .restaurant__card {
+  .card__link {
     display: flex;
-    flex-grow: 1;
-    /* width: 200px; */
-    /* min-height: 8vh; */
+    max-width: 25%;
+    min-height: 8vh;
+  }
+
+  .restaurant__card {
     border: 2px solid black;
     padding: 1vw 0 0 1vw;
     margin: 1vw;
@@ -101,9 +103,9 @@
 }
 
 .restaurant__card {
-  display: flex;
+  /* display: flex;
   flex-grow: 1;
-  /* width: 90%; */
+  width: 90%; */
   min-height: 8vh;
   border: 2px solid black;
   padding: 1vw 1vw 0 1vw;

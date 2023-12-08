@@ -73,6 +73,7 @@ const Body = () => {
           <Link
             key={restaurant.info.id}
             to={"/restaurants/" + restaurant.info.id}
+            className="card__link"
           >
             <RestaurantCard restaurant={restaurant} />
           </Link>
