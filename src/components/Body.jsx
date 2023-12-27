@@ -16,11 +16,11 @@ const Body = () => {
         const data = await fetch(SWIGGY_API_URL);
         const json = await data.json();
         setRestaurantList(
-          json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+          json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
             ?.restaurants
         );
         setFilteredRestaurant(
-          json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+          json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
             ?.restaurants
         );
         console.log("json", json);
@@ -35,7 +35,9 @@ const Body = () => {
   const onlineStatus = useOnlineStatus();
 
   const handleFilterClick = () => {
-    setRestaurantList(restaurantList.filter((res) => res.info.avgRating > 4));
+    setFilteredRestaurant(
+      restaurantList.filter((res) => res.info.avgRating > 4.3)
+    );
   };
 
   if (onlineStatus === false)
@@ -49,11 +51,11 @@ const Body = () => {
   return restaurantList?.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="search__container">
+    <div className="flex flex-col items-center w-[100%] min-h-[100%] ">
+      <div className="w-[80%]">
         <input
           type="text"
-          className="search__input"
+          className="border-black m-4"
           placeholder="Search restaurants..."
           value={searchText}
           onChange={(e) => {
@@ -74,21 +76,26 @@ const Body = () => {
         >
           Search
         </button>
-        <button className="filter button" onClick={handleFilterClick}>
+        <h1 className="font-bold text-2xl  mx-4">
+          Restaurants with online food delivery in Bangalore
+        </h1>
+        <button
+          className=" border-2 border-solid rounded-3xl px-4 py-2 m-4 text-gray-800 shadow-lg "
+          onClick={handleFilterClick}
+        >
           Top Restaurants
         </button>
-      </div>
-
-      <div className="restaurant__container">
-        {filteredRestaurant.map((restaurant) => (
-          <Link
-            key={restaurant.info.id}
-            to={"/restaurants/" + restaurant.info.id}
-            className="card__link"
-          >
-            <RestaurantCard restaurant={restaurant} />
-          </Link>
-        ))}
+        <div className="flex flex-wrap justify-start items-stretch flex-col md:flex-row lg:flex-row">
+          {filteredRestaurant.map((restaurant) => (
+            <Link
+              key={restaurant.info.id}
+              to={"/restaurants/" + restaurant.info.id}
+              className=""
+            >
+              <RestaurantCard restaurant={restaurant} />
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
