@@ -1,6 +1,10 @@
 import { CLOUDINARY_IMAGE_URL } from "../utils/constants";
+import UserContext from "../utils/context/UserContext";
+import { useContext } from "react";
 
 const RestaurantCard = ({ restaurant }) => {
+  const { loggedInUserName } = useContext(UserContext);
+
   return (
     <div className="w-[100%] m-4 ">
       <img
@@ -16,6 +20,7 @@ const RestaurantCard = ({ restaurant }) => {
         <div className="text-slate-600 text-sm whitespace-nowrap overflow-hidden text-ellipsis ">
           {restaurant.info.cuisines.join(", ")}
         </div>
+        <div>{loggedInUserName}</div>
       </div>
     </div>
   );

@@ -1,14 +1,16 @@
 import RestaurantCard from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { SWIGGY_API_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/hooks/useOnlineStatus";
+import UserContext from "../utils/context/UserContext";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const { loggedInUserName, setUserName } = useContext(UserContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,11 +18,11 @@ const Body = () => {
         const data = await fetch(SWIGGY_API_URL);
         const json = await data.json();
         setRestaurantList(
-          json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
             ?.restaurants
         );
         setFilteredRestaurant(
-          json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
             ?.restaurants
         );
         console.log("json", json);
@@ -76,6 +78,12 @@ const Body = () => {
         >
           Search
         </button>
+        <input
+          className="mx-8 w-[35%] px-2"
+          onChange={(e) => setUserName(e.target.value)}
+          value={loggedInUserName}
+          placeholder="Write something to see Context Working"
+        />
         <h1 className="font-bold text-2xl  mx-4">
           Restaurants with online food delivery in Bangalore
         </h1>
@@ -90,7 +98,6 @@ const Body = () => {
             <Link
               key={restaurant.info.id}
               to={"/restaurants/" + restaurant.info.id}
-              className=""
             >
               <RestaurantCard restaurant={restaurant} />
             </Link>

@@ -2,6 +2,7 @@ import logo from "../assets/logo.png";
 import { useState } from "react";
 import useOnlineStatus from "../utils/hooks/useOnlineStatus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
@@ -18,9 +19,15 @@ const Header = () => {
           </li>
           <li className="m-4 "></li>
           <li className="m-4 ">Online Status: {onlineStatus ? "✅" : "🔴"}</li>
-          <li className="m-4 ">Home</li>
-          <li className="m-4 ">About Us</li>
-          <li className="m-4 ">Contact Us</li>
+          <li className="m-4 ">
+            <Link to={"/"}> Home</Link>
+          </li>
+          <li className="m-4 ">
+            <Link to={"/about"}> About Us</Link>
+          </li>
+          <li className="m-4 ">
+            <Link to={"/contact"}> Contact Us</Link>
+          </li>
           <li className="m-4 ">Cart</li>
 
           <button

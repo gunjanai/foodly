@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import "../index.css";
 import Header from "./components/Header";
@@ -8,13 +8,17 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import ErrorPage from "./components/ErrorPage";
 import RestaurantMenu from "./components/RestaurantMenu";
+import UserContext from "./utils/context/UserContext";
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState("Global User Name");
   return (
-    <div className="m-0 p-0 box-border">
-      <Header />
-      <Outlet />
-    </div>
+    <UserContext.Provider value={{ loggedInUserName: userName, setUserName }}>
+      <div className="m-0 p-0 box-border">
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 
