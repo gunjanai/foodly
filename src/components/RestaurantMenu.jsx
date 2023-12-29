@@ -24,10 +24,10 @@ function RestaurantMenu() {
     totalRatingsString,
     costForTwoMessage,
     cuisines,
-  } = resInfo?.data?.cards[2]?.card?.card?.info;
+  } = resInfo?.data?.cards[0]?.card?.card?.info;
 
   const categories =
-    resInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (c) =>
         c?.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
@@ -57,7 +57,7 @@ function RestaurantMenu() {
       </div>
       <span className="font-bold">{costForTwoMessage}</span>
       <div>
-        {categories.map((category, i) => (
+        {categories?.map((category, i) => (
           <RestaurantMenuCategory
             key={i}
             category={category?.card?.card}
